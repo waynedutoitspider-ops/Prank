@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>System Alert</title>
+
+<style>
+body {
+  background: black;
+  color: lime;
+  font-family: monospace;
+  margin: 0;
+  padding: 20px;
+}
+
+#text {
+  white-space: pre-line;
+  font-size: 14px;
+}
+
+.red {
+  color: red;
+  font-weight: bold;
+  font-size: 18px;
+}
+</style>
+</head>
+
+<body>
+
+<div class="red">⚠ SYSTEM BREACH DETECTED ⚠</div>
+<div id="text"></div>
+
+<script>
+let lines = [
+  "Connecting to device...",
+  "Bypassing security...",
+  "Access granted.",
+  "Downloading contacts...",
+  "Uploading photos...",
+  "Tracking location...",
+  "Installing backdoor...",
+  "WARNING: Device compromised!"
+];
+
+let i = 0;
+
+function typeLine() {
+  if (i < lines.length) {
+    document.getElementById("text").innerHTML += lines[i] + "\n";
+    i++;
+    setTimeout(typeLine, 800);
+  } else {
+    alert("Your device has been hacked 😈 (just kidding!)");
+  }
+}
+
+typeLine();
+</script>
+
+</body>
+</html>
