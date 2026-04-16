@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Security Alert</title>
+
+<style>
+body {
+  margin: 0;
+  background: #0d0d0d;
+  color: #00ff9c;
+  font-family: monospace;
+}
+
+.header {
+  background: #111;
+  padding: 12px;
+  text-align: center;
+  font-weight: bold;
+  color: red;
+  border-bottom: 2px solid red;
+}
+
+#terminal {
+  padding: 15px;
+  font-size: 13px;
+  white-space: pre-line;
+}
+
+.warning {
+  color: red;
+  font-size: 18px;
+  text-align: center;
+  margin-top: 20px;
+}
+
+#countdown {
+  font-size: 40px;
+  text-align: center;
+  color: red;
+  margin-top: 10px;
+}
+
+.footer {
+  position: fixed;
+  bottom: 5px;
+  width: 100%;
+  text-align: center;
+  font-size: 10px;
+  color: #555;
+}
+</style>
+</head>
+
+<body>
+
+<div class="header">⚠ ANDROID SECURITY BREACH ⚠</div>
+
+<div id="terminal"></div>
+
+<div class="warning">SELF-DESTRUCT IN:</div>
+<div id="countdown">10</div>
+
+<div class="footer">created by iDIYed</div>
+
+<audio id="beep" src="https://www.soundjay.com/buttons/beep-07.wav"></audio>
+
+<script>
+let lines = [
+  "Connecting to device...",
+  "Bypassing encryption...",
+  "Access granted.",
+  "Extracting photos...",
+  "Uploading contacts...",
+  "Tracking GPS...",
+  "Installing root access...",
+  "WARNING: FULL CONTROL OBTAINED"
+];
+
+let i = 0;
+let term = document.getElementById("terminal");
+let beep = document.getElementById("beep");
+
+// Start vibration loop
+function vibrateLoop() {
+  if (navigator.vibrate) {
+    navigator.vibrate([200, 100, 200]);
+    setTimeout(vibrateLoop, 600);
+  }
+}
+
+// Typing effect
+function typeLine() {
+  if (i < lines.length) {
+    term.innerHTML += lines[i] + "\n";
+    beep.play();
+    i++;
+    setTimeout(typeLine, 700);
+  }
+}
+
+typeLine();
+vibrateLoop();
+
+// Countdown
+let time = 10;
+let countdownEl = document.getElementById("countdown");
+
+let timer = setInterval(() => {
+  time--;
+  countdownEl.innerText = time;
+  beep.play();
+
+  if (time <= 0) {
+    clearInterval(timer);
+    document.body.innerHTML = `
+      <div style="color:red; text-align:center; margin-top:40%; font-size:22px;">
+        💀 SYSTEM DESTROYED 💀<br><br>
+        Just kidding 😄<br>
+        Your phone is safe.
+      </div>
+    `;
+  }
+}, 1000);
+
+// Force fullscreen (more immersive)
+document.documentElement.requestFullscreen?.();
+</script>
+
+</body>
+</html>
